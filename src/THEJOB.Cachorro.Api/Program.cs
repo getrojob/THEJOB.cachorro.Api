@@ -1,5 +1,4 @@
-
-using Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector.QuickPulse;
+using THEJOB.Cachorro.Api.Extensions.Telemetria;
 
 namespace THEJOB.Cachorro.Api
 {
@@ -9,23 +8,15 @@ namespace THEJOB.Cachorro.Api
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Logging.ClearProviders();
-            builder.Logging.AddConsole();
-
             // Add services to the container.
 
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Logging.AddApplicationInsights(configureTelemetryConfiguration: (config) =>
-            {
-                config.ConnectionString = builder.Configuration.GetSection("ConnectionString:ApplicationInsights").Value;
-            }, configureApplicationInsightsLoggerOptions: (options) => { });
-
-            builder.Services.AddApplicationInsightsTelemetry(builder.Configuration.GetSection("ConnectionString:ApplicationInsights").Value)
-                .ConfigureTelemetryModule<QuickPulseTelemetryModule>((module, o) => module.AuthenticationApiKey = builder.Configuration.GetSection("ApplicationInsights:Api-Key").Value);
+            builder.Logging.AddLogExtensions(builder.Configuration);
+            builder.Services.AddAppInsights(builder.Configuration);
 
             var app = builder.Build();
 
