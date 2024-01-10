@@ -4,13 +4,17 @@
     {
         public string Nome { get; init; }
         public DateTime Nascimento { get; init; }
+        public bool Adotado { get; set; }
         public List<Vacinas> Vacinas { get; private set; }
-        public void Vacinar(Vacinas vacina)
+        public string Pelagem { get; set; }
+        public float Peso { get; set; }
+        public void Vacinar(Vacinas vacinas)
         {
-            Vacinas.Add(vacina);
+            Vacinas.Add(vacinas);
         }
     }
 
+    [Flags]
     public enum Vacinas
     {
         Raiva,
@@ -28,5 +32,13 @@
         Parainfluenza,
         Leptospirose,
         BordetellaBronchiseptica
+    }
+
+    [Flags]
+    public enum Pelagem
+    {
+        Curto,
+        Medio,
+        Longo
     }
 }
