@@ -1,5 +1,7 @@
 using DEPLOY.Cachorro.Api.Extensions.Swagger;
+using Microsoft.EntityFrameworkCore;
 using THEJOB.Cachorro.Api.Extensions.Telemetria;
+using THEJOB.Cachorro.Repository;
 
 namespace THEJOB.Cachorro.Api
 {
@@ -14,6 +16,11 @@ namespace THEJOB.Cachorro.Api
             builder.Services.AddControllers();
 
             builder.Services.AddEndpointsApiExplorer();
+
+            builder.Services.AddDbContext<CachorroContext>(options =>
+            {
+                options.UseInMemoryDatabase("Cachorros");
+            });
 
             builder.Logging.AddLogExtensions(builder.Configuration);
             builder.Services.AddAppInsights(builder.Configuration);

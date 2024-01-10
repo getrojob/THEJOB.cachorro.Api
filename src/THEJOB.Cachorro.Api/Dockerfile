@@ -9,7 +9,8 @@ FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["THEJOB.Cachorro.Api/THEJOB.Cachorro.Api.csproj", "THEJOB.Cachorro.Api/"]
-RUN dotnet restore "./THEJOB.Cachorro.Api/./THEJOB.Cachorro.Api.csproj"
+COPY ["THEJOB.Cachorro.Domain/THEJOB.Cachorro.Domain.csproj", "THEJOB.Cachorro.Domain/"]
+RUN dotnet restore "THEJOB.Cachorro.Api/THEJOB.Cachorro.Api.csproj"
 COPY . .
 WORKDIR "/src/THEJOB.Cachorro.Api"
 RUN dotnet build "./THEJOB.Cachorro.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build

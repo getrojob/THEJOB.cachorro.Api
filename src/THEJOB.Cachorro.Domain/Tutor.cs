@@ -2,6 +2,6 @@
 {
     public class Tutor : BaseEntity<int>
     {
-        public string Nome { get; set; }
+        public long CPF { get; set; }
     }
 }
