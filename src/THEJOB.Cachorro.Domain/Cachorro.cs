@@ -5,13 +5,13 @@
         public string Nome { get; init; }
         public DateTime Nascimento { get; init; }
         public bool Adotado { get; set; }
-        public List<Vacinas> Vacinas { get; private set; }
+        //public List<Vacinas> Vacinas { get; private set; } = new List<Vacinas>();
         public string Pelagem { get; set; }
         public float Peso { get; set; }
-        public void Vacinar(Vacinas vacinas)
-        {
-            Vacinas.Add(vacinas);
-        }
+        //public void Vacinar(Vacinas vacinas)
+        //{
+        //    Vacinas.Add(vacinas);
+        //}
     }
 
     [Flags]

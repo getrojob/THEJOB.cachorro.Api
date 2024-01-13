@@ -7,7 +7,7 @@
     <UserSecretsId>CachorroApi</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <ApplicationInsightsResourceId>/subscriptions/96b6b183-7c23-4bda-a760-06988c66a7b4/resourceGroups/rg-thejob-dev/providers/microsoft.insights/components/appi-cachorro-api</ApplicationInsightsResourceId>
-    <AssemblyVersion>0.5.0</AssemblyVersion>
+    <AssemblyVersion>0.6.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
