@@ -10,6 +10,7 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["THEJOB.Cachorro.Api/THEJOB.Cachorro.Api.csproj", "THEJOB.Cachorro.Api/"]
 COPY ["THEJOB.Cachorro.Domain/THEJOB.Cachorro.Domain.csproj", "THEJOB.Cachorro.Domain/"]
+COPY ["THEJOB.Cachorro.Repository/THEJOB.Cachorro.Repository.csproj", "THEJOB.Cachorro.Repository/"]
 RUN dotnet restore "THEJOB.Cachorro.Api/THEJOB.Cachorro.Api.csproj"
 COPY . .
 WORKDIR "/src/THEJOB.Cachorro.Api"
