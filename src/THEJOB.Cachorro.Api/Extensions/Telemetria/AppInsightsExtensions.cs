@@ -9,7 +9,7 @@ namespace THEJOB.Cachorro.Api.Extensions.Telemetria
             IConfiguration configuration)
         {
             services.AddApplicationInsightsTelemetry(configuration.GetSection("ConnectionString:ApplicationInsights").Value)
-                .ConfigureTelemetryModule<QuickPulseTelemetryModule>((module, o) => module.AuthenticationApiKey = configuration.GetSection("ApplicationInsights:Api-Key").Value);
+                .ConfigureTelemetryModule<QuickPulseTelemetryModule>((module, o) => module.AuthenticationApiKey = configuration.GetSection("ApplicationInsights:ApiKey").Value);
         }
     }
 }
