@@ -39,7 +39,7 @@ namespace DEPLOY.Cachorro.Api.Extensions.Swagger
             {
                 Title = "Cachorro WebAPI .NET 7",
                 Version = desc.ApiVersion.ToString(),
-                Description = $"WebApi criada no canal D.E.P.L.O.Y. v{Assembly.GetExecutingAssembly().GetName().Version}",
+                Description = $"WebApi THEJOB v{Assembly.GetExecutingAssembly().GetName().Version}",
                 Contact = new OpenApiContact()
                 {
                     Email = "getrojob@gmail.com",
