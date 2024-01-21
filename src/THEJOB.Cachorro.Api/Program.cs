@@ -1,5 +1,6 @@
 using DEPLOY.Cachorro.Api.Extensions.Swagger;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 using THEJOB.Cachorro.Api.Extensions.Telemetria;
 using THEJOB.Cachorro.Repository;
 
@@ -13,7 +14,10 @@ namespace THEJOB.Cachorro.Api
 
             // Add services to the container.
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers().AddJsonOptions(opt =>
+            {
+                opt.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            });
 
             builder.Services.AddEndpointsApiExplorer();
 

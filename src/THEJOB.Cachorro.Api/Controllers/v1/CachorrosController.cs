@@ -55,6 +55,23 @@ namespace DEPLOY.Cachorro.Api.Controllers.v1
             return CreatedAtAction("ObterPorId", new { id = cachorro.Id }, cachorro);
         }
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutCachorro(
+            Guid id,
+            THEJOB.Cachorro.Domain.Cachorro cachorro)
+        {
+            if (id != cachorro.Id)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(cachorro).State = EntityState.Modified;
+
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
