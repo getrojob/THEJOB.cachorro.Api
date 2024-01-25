@@ -12,30 +12,30 @@
         public enum Vacinas
         {
             None = 0,
-            Raiva,
-            V8,
-            V10,
-            TosseDosCanis,
-            Leishmaniose,
-            Giardia,
-            GripeCanina,
-            Cinomose,
-            Parvovirose,
-            Coronavirose,
-            Adenovirose,
-            HepatiteInfecciosaCanina,
-            Parainfluenza,
-            Leptospirose,
-            BordetellaBronchiseptica
+            Raiva = 1,
+            V8 = 2,
+            V10 = 3,
+            TosseDosCanis = 5,
+            Leishmaniose = 6,
+            Giardia = 7,
+            GripeCanina = 8,
+            Cinomose = 10,
+            Parvovirose = 11,
+            Coronavirose = 12,
+            Adenovirose = 13,
+            HepatiteInfecciosaCanina = 14,
+            Parainfluenza = 15,
+            Leptospirose = 16,
+            BordetellaBronchiseptica = 17
         }
 
         [Flags]
         public enum PelagemType
         {
             None = 0,
-            Curto,
-            Medio,
-            Longo
+            Curto = 1,
+            Medio = 2,
+            Longo = 3
         }
     }
 }

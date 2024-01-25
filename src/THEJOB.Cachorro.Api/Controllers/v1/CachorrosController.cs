@@ -28,11 +28,10 @@ namespace DEPLOY.Cachorro.Api.Controllers.v1
         }
 
         [HttpGet("{id}")]
-        public IActionResult ObterPorId(int id)
+        public async Task<IActionResult> ObterPorId(int id)
         {
-            var cachorro = _context.Cachorros.FindAsync(id);
-
-            if (cachorro.Result == null)
+            var cachorro = await _context.Cachorros.FindAsync(id);
+            if (cachorro == null)
             {
                 return NotFound();
             }
