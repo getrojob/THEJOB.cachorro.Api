@@ -2,7 +2,6 @@
 {
     public class Cachorro : BaseEntity<Guid>
     {
-        public string Nome { get; init; }
         public DateTime Nascimento { get; init; }
         public bool Adotado { get; set; }
         public PelagemType Pelagem { get; set; }
@@ -15,6 +14,7 @@
             Raiva = 1,
             V8 = 2,
             V10 = 3,
+            V12 = 4,
             TosseDosCanis = 5,
             Leishmaniose = 6,
             Giardia = 7,
