@@ -47,5 +47,5 @@ jobs:
         shell: powershell
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"getrojob_THEJOB.cachorro.Api" /o:"getrojob" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-          dotnet build --project THEJOB.Cachorro.Api/THEJOB.Cachorro.Api.csproj
+          dotnet run --project DEPLOY.Cachorro.Api/DEPLOY.Cachorro.Api.csproj --no-incremental
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
