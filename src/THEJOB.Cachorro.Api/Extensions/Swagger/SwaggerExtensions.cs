@@ -12,9 +12,6 @@ namespace DEPLOY.Cachorro.Api.Extensions.Swagger
                 opt.DefaultApiVersion = new ApiVersion(1, 0);
                 opt.AssumeDefaultVersionWhenUnspecified = true;
                 opt.ReportApiVersions = true;
-                //opt.ApiVersionReader = ApiVersionReader.Combine(new UrlSegmentApiVersionReader(),
-                //                                                new HeaderApiVersionReader("x-api-version"),
-                //                                                new MediaTypeApiVersionReader("x-api-version"));
             });
 
             services.AddVersionedApiExplorer(setup =>
@@ -33,19 +30,19 @@ namespace DEPLOY.Cachorro.Api.Extensions.Swagger
         {
             var apiVersionDescriptionProvider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
 
-            // Configure the HTTP request pipeline.
-            //if (app.Environment.IsDevelopment())
-            //{
-            app.UseSwagger();
-            app.UseSwaggerUI(options =>
+            if (app.Environment.IsDevelopment())
             {
-                foreach (var description in apiVersionDescriptionProvider.ApiVersionDescriptions)
+                app.UseSwagger();
+                app.UseSwaggerUI(options =>
                 {
-                    options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json",
-                        description.GroupName.ToUpperInvariant());
-                }
-            });
-            //}
+                    options.RoutePrefix = string.Empty;
+                    foreach (var description in apiVersionDescriptionProvider.ApiVersionDescriptions)
+                    {
+                        options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json",
+                            description.GroupName.ToUpperInvariant());
+                    }
+                });
+            }
         }
     }
 }

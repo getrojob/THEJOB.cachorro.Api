@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using THEJOB.Cachorro.Domain;
 using THEJOB.Cachorro.Repository;
 
 namespace DEPLOY.Cachorro.Api.Controllers.v1
@@ -34,8 +32,10 @@ namespace DEPLOY.Cachorro.Api.Controllers.v1
         {
             var cachorro = _context.Cachorros.FindAsync(id);
 
-            if (cachorro == null)
+            if (cachorro.Result == null)
+            {
                 return NotFound();
+            }
 
             return Ok(cachorro);
         }
