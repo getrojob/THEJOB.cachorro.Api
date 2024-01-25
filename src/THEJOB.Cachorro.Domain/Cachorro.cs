@@ -4,7 +4,7 @@
     {
         public DateTime Nascimento { get; init; }
         public bool Adotado { get; set; }
-        public PelagemType Pelagem { get; set; }
+        public PELAGEM Pelagem { get; set; }
         public float Peso { get; set; }
 
         [Flags]
