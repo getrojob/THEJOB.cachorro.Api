@@ -4,11 +4,11 @@
     {
         public DateTime Nascimento { get; init; }
         public bool Adotado { get; set; }
-        public PELAGEM Pelagem { get; set; }
+        public Pelagems Pelagem { get; set; }
         public float Peso { get; set; }
 
         [Flags]
-        public enum VACINAS
+        public enum Vacinas
         {
             None = 0,
             Raiva = 1,
@@ -30,7 +30,7 @@
         }
 
         [Flags]
-        public enum PELAGEM
+        public enum Pelagems
         {
             None = 0,
             Curto = 1,
