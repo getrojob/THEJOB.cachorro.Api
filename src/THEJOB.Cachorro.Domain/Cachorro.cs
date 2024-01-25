@@ -8,7 +8,7 @@
         public float Peso { get; set; }
 
         [Flags]
-        public enum Vacinas
+        public enum VACINAS
         {
             None = 0,
             Raiva = 1,
