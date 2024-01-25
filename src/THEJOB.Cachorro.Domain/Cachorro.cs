@@ -8,7 +8,7 @@
         public float Peso { get; set; }
 
         [Flags]
-        public enum Vacinas
+        public enum VACINAS
         {
             None = 0,
             Raiva = 1,
@@ -30,7 +30,7 @@
         }
 
         [Flags]
-        public enum PelagemType
+        public enum PELAGEM
         {
             None = 0,
             Curto = 1,
