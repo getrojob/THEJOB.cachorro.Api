@@ -31,7 +31,6 @@ namespace DEPLOY.Cachorro.Api.Controllers.v1
         public async Task<IActionResult> ObterPorId(int id)
         {
             var cachorro = await _context.Cachorros.FindAsync(id);
-
             if (cachorro == null)
             {
                 return NotFound();
