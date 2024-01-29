@@ -2,10 +2,8 @@ name: DockerHub
 
 on:
   workflow_dispatch:
-
 env:
   TEST_TAG: getrojob/cachorro.api:test
-
 jobs:
   docker:
     runs-on: ubuntu-latest
