@@ -110,5 +110,5 @@ jobs:
           file: ./src/THEJOB.Cachorro.Api/Dockerfile
           push: true
           tags: |
-            felipementel/${{ env.imageName }}:latest
-            felipementel/${{ env.imageName }}:${{ steps.get-version.outputs.tag }}
+            getrojob/${{ env.imageName }}:latest
+            getrojob/${{ env.imageName }}:${{ steps.get-version.outputs.tag }}
