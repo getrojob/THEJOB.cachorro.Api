@@ -8,6 +8,7 @@ using THEJOB.Cachorro.Repository;
 
 namespace THEJOB.Cachorro.Api.Tests
 {
+    [ExcludeFromCodeCoverage]
     public class TutoresControllerTest
     {
         [Fact]
