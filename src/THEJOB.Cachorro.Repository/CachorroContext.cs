@@ -9,6 +9,6 @@ namespace THEJOB.Cachorro.Repository
         }
 
         public DbSet<Domain.Cachorro> Cachorros { get; set; }
-        public DbSet<Domain.Tutor> Tutors { get; set; }
+        public DbSet<Domain.Tutor> Tutores { get; set; }
     }
 }

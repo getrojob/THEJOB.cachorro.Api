@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using THEJOB.Cachorro.Repository;
 
-namespace DEPLOY.Cachorro.Api.Controllers.v1
+namespace THEJOB.Cachorro.Api.Controllers.v1
 {
     [ApiController]
     [ApiVersion("1.0")]
@@ -18,17 +18,17 @@ namespace DEPLOY.Cachorro.Api.Controllers.v1
 
         [HttpGet]
         [Produces("application/json")]
-        [ProducesResponseType(typeof(IEnumerable<THEJOB.Cachorro.Domain.Cachorro>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<Domain.Cachorro>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Listar()
+        public async Task<IActionResult> ListarAsync()
         {
             var items = await _context.Cachorros.ToListAsync();
             return Ok(items);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> ObterPorId(int id)
+        public async Task<IActionResult> ObterPorIdAsync(Guid id)
         {
             var cachorro = await _context.Cachorros.FindAsync(id);
             if (cachorro == null)
@@ -42,10 +42,10 @@ namespace DEPLOY.Cachorro.Api.Controllers.v1
         [HttpPost]
         [Produces("application/json")]
         [Consumes("application/json")]
-        [ProducesResponseType(typeof(THEJOB.Cachorro.Domain.Cachorro), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(Domain.Cachorro), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> CadastrarCachorro(
+        public async Task<IActionResult> CadastrarCachorroAsync(
             [FromBody] THEJOB.Cachorro.Domain.Cachorro cachorro)
         {
             _context.Add(cachorro);
@@ -55,7 +55,7 @@ namespace DEPLOY.Cachorro.Api.Controllers.v1
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCachorro(
+        public async Task<IActionResult> PutCachorroAsync(
             Guid id,
             THEJOB.Cachorro.Domain.Cachorro cachorro)
         {
@@ -75,7 +75,7 @@ namespace DEPLOY.Cachorro.Api.Controllers.v1
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> ExcluirCachorro(int id)
+        public async Task<IActionResult> ExcluirCachorroAsync(Guid id)
         {
             var cachorro = await _context.Cachorros.FindAsync(id);
 

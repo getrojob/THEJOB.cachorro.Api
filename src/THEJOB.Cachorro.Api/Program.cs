@@ -1,11 +1,13 @@
-using DEPLOY.Cachorro.Api.Extensions.Swagger;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Serialization;
+using THEJOB.Cachorro.Api.Extensions.Swagger;
 using THEJOB.Cachorro.Api.Extensions.Telemetria;
 using THEJOB.Cachorro.Repository;
 
 namespace THEJOB.Cachorro.Api
 {
+    [ExcludeFromCodeCoverage]
     public class Program
     {
         public static void Main(string[] args)

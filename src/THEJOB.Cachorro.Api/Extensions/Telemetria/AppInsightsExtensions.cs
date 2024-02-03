@@ -1,7 +1,9 @@
 ﻿using Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector.QuickPulse;
+using System.Diagnostics.CodeAnalysis;
 
 namespace THEJOB.Cachorro.Api.Extensions.Telemetria
 {
+    [ExcludeFromCodeCoverage]
     public static class AppInsightsExtensions
     {
         public static void AddAppInsights(

@@ -1,10 +1,16 @@
-﻿namespace THEJOB.Cachorro.Domain
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace THEJOB.Cachorro.Domain
 {
+    [ExcludeFromCodeCoverage]
     public class BaseEntity<T>
     {
-        public T Id { get; set; }
-        public string Nome { get; set; }
+        public T Id { get; set; } = default!;
+
+        public string Nome { get; set; } = default!;
+
         public DateTime Cadastro { get; set; }
+
         public DateTime Atualizacao { get; set; }
     }
 }
