@@ -1,5 +1,8 @@
-﻿namespace THEJOB.Cachorro.Domain
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace THEJOB.Cachorro.Domain
 {
+    [ExcludeFromCodeCoverage]
     public class Cachorro : BaseEntity<Guid>
     {
         public DateTime Nascimento { get; init; }

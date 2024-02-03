@@ -1,6 +1,9 @@
-﻿namespace THEJOB.Cachorro.Domain
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace THEJOB.Cachorro.Domain
 {
-    public class Tutor : BaseEntity<int>
+    [ExcludeFromCodeCoverage]
+    public class Tutor : BaseEntity<long>
     {
         public long CPF { get; set; }
     }

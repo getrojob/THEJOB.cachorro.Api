@@ -1,5 +1,8 @@
-﻿namespace THEJOB.Cachorro.Api.Extensions.Telemetria
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace THEJOB.Cachorro.Api.Extensions.Telemetria
 {
+    [ExcludeFromCodeCoverage]
     public static class LoggingExtensions
     {
         public static void AddLogExtensions(

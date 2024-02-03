@@ -7,8 +7,8 @@
     <UserSecretsId>CachorroApi</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <ApplicationInsightsResourceId>/subscriptions/96b6b183-7c23-4bda-a760-06988c66a7b4/resourceGroups/rg-thejob-dev/providers/microsoft.insights/components/appi-cachorro-api</ApplicationInsightsResourceId>
-    <AssemblyVersion>0.8.0</AssemblyVersion>
-	<Version>0.8.8</Version>
+    <AssemblyVersion>0.8.9</AssemblyVersion>
+	<Version>0.8.9</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,6 +20,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.ApplicationInsights" Version="2.22.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
   </ItemGroup>
 
   <ItemGroup>

@@ -7,7 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "THEJOB.Cachorro.Api", "THEJ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "THEJOB.Cachorro.Domain", "THEJOB.Cachorro.Domain\THEJOB.Cachorro.Domain.csproj", "{0C355DA3-ED58-4E6B-9B11-A91660CD2F1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "THEJOB.Cachorro.Repository", "THEJOB.Cachorro.Repository\THEJOB.Cachorro.Repository.csproj", "{4969C206-F026-44DF-A7F9-88B002024768}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "THEJOB.Cachorro.Repository", "THEJOB.Cachorro.Repository\THEJOB.Cachorro.Repository.csproj", "{4969C206-F026-44DF-A7F9-88B002024768}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testes", "Testes", "{0334465C-03CE-4CDA-87E4-0681421B5732}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "THEJOB.Cachorro.Api.Tests", "THEJOB.Cachorro.Api.Tests\THEJOB.Cachorro.Api.Tests.csproj", "{3B92EF3D-5F86-487B-A565-72257A5597BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +31,16 @@ Global
 		{4969C206-F026-44DF-A7F9-88B002024768}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4969C206-F026-44DF-A7F9-88B002024768}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4969C206-F026-44DF-A7F9-88B002024768}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B92EF3D-5F86-487B-A565-72257A5597BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B92EF3D-5F86-487B-A565-72257A5597BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B92EF3D-5F86-487B-A565-72257A5597BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B92EF3D-5F86-487B-A565-72257A5597BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3B92EF3D-5F86-487B-A565-72257A5597BD} = {0334465C-03CE-4CDA-87E4-0681421B5732}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CEA042E1-9917-495D-877E-C5F91697D617}
