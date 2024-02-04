@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using THEJOB.Cachorro.Api.Controllers.v1;
 using THEJOB.Cachorro.Repository;
 
