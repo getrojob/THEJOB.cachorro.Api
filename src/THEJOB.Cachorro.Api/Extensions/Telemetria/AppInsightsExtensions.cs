@@ -1,4 +1,5 @@
-﻿using Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector.QuickPulse;
+﻿using Microsoft.ApplicationInsights.DependencyCollector;
+using Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector.QuickPulse;
 using System.Diagnostics.CodeAnalysis;
 
 namespace THEJOB.Cachorro.Api.Extensions.Telemetria
@@ -11,7 +12,16 @@ namespace THEJOB.Cachorro.Api.Extensions.Telemetria
             IConfiguration configuration)
         {
             services.AddApplicationInsightsTelemetry(configuration.GetSection("ConnectionString:ApplicationInsights").Value)
-                .ConfigureTelemetryModule<QuickPulseTelemetryModule>((module, o) => module.AuthenticationApiKey = configuration.GetSection("ApplicationInsights:ApiKey").Value);
+                .ConfigureTelemetryModule<QuickPulseTelemetryModule>((module, o) =>
+                {
+                    module.AuthenticationApiKey = configuration.GetSection("ApplicationInsights:ApiKey").Value;
+                });
+
+            services.ConfigureTelemetryModule<DependencyTrackingTelemetryModule>((module, o) =>
+            {
+                module.EnableSqlCommandTextInstrumentation = true;
+            });
+
         }
     }
 }
