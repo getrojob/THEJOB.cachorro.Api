@@ -4,6 +4,10 @@ FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
+LABEL org.opencontainers.image.authors="getrojob@gmail.com"
+LABEL org.opencontainers.image.source=https://github.com/getrojob/THEJOB.cachorro.Api
+LABEL org.opencontainers.image.description="API cachorro afim de estudo"
+LABEL org.opencontainers.image.licenses=MIT
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 ARG BUILD_CONFIGURATION=Release
