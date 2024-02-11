@@ -17,12 +17,12 @@ namespace THEJOB.Cachorro.Api.Tests
             var tutor1 = new Domain.Tutor { Nome = "Eu cuido da silva" };
             var tutor2 = new Domain.Tutor { Nome = "Eu cuido dos santos" };
 
-            var options = new DbContextOptionsBuilder<CachorroContext>()
+            var options = new DbContextOptionsBuilder<CachorroDbContext>()
                 .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
                 .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
                 .Options;
 
-            using (var context = new CachorroContext(options))
+            using (var context = new CachorroDbContext(options))
             {
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
@@ -32,7 +32,7 @@ namespace THEJOB.Cachorro.Api.Tests
                 context.SaveChanges();
             }
 
-            using (var context = new CachorroContext(options))
+            using (var context = new CachorroDbContext(options))
             {
                 var controller = new TutoresController(context);
 
@@ -49,18 +49,18 @@ namespace THEJOB.Cachorro.Api.Tests
         [Trait("List", "API")]
         public async Task ListarAsync_ReturnsOk_WhenTutoresNotFound()
         {
-            var options = new DbContextOptionsBuilder<CachorroContext>()
+            var options = new DbContextOptionsBuilder<CachorroDbContext>()
                 .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
                 .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
                 .Options;
 
-            using (var context = new CachorroContext(options))
+            using (var context = new CachorroDbContext(options))
             {
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
             }
 
-            using (var context = new CachorroContext(options))
+            using (var context = new CachorroDbContext(options))
             {
                 var controller = new TutoresController(context);
 
@@ -81,12 +81,12 @@ namespace THEJOB.Cachorro.Api.Tests
             // Arrange
             var tutor = new Domain.Tutor { Nome = "Eu cuido da silva" };
 
-            var options = new DbContextOptionsBuilder<CachorroContext>()
+            var options = new DbContextOptionsBuilder<CachorroDbContext>()
                 .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
                 .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
                 .Options;
 
-            using (var context = new CachorroContext(options))
+            using (var context = new CachorroDbContext(options))
             {
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
@@ -95,7 +95,7 @@ namespace THEJOB.Cachorro.Api.Tests
                 context.SaveChanges();
             }
 
-            using (var context = new CachorroContext(options))
+            using (var context = new CachorroDbContext(options))
             {
                 var controller = new TutoresController(context);
 
@@ -117,12 +117,12 @@ namespace THEJOB.Cachorro.Api.Tests
             // Arrange
             var tutor = new Domain.Tutor { Nome = "Eu cuido da silva" };
 
-            var options = new DbContextOptionsBuilder<CachorroContext>()
+            var options = new DbContextOptionsBuilder<CachorroDbContext>()
                 .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
                 .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
                 .Options;
 
-            using (var context = new CachorroContext(options))
+            using (var context = new CachorroDbContext(options))
             {
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
@@ -131,7 +131,7 @@ namespace THEJOB.Cachorro.Api.Tests
                 context.SaveChanges();
             }
 
-            using (var context = new CachorroContext(options))
+            using (var context = new CachorroDbContext(options))
             {
                 var controller = new TutoresController(context);
 
@@ -151,18 +151,18 @@ namespace THEJOB.Cachorro.Api.Tests
             // Arrange
             var tutor = new Domain.Tutor { Nome = "Eu cuido da silva" };
 
-            var options = new DbContextOptionsBuilder<CachorroContext>()
+            var options = new DbContextOptionsBuilder<CachorroDbContext>()
                .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
                .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
                .Options;
 
-            using (var context = new CachorroContext(options))
+            using (var context = new CachorroDbContext(options))
             {
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
             }
 
-            using (var context = new CachorroContext(options))
+            using (var context = new CachorroDbContext(options))
             {
                 var controller = new TutoresController(context);
 
@@ -183,12 +183,12 @@ namespace THEJOB.Cachorro.Api.Tests
             // Arrange
             var tutor = new Domain.Tutor { Nome = "Eu cuido da silva" };
 
-            var options = new DbContextOptionsBuilder<CachorroContext>()
+            var options = new DbContextOptionsBuilder<CachorroDbContext>()
                .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
                .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
                .Options;
 
-            using (var context = new CachorroContext(options))
+            using (var context = new CachorroDbContext(options))
             {
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
@@ -197,7 +197,7 @@ namespace THEJOB.Cachorro.Api.Tests
                 context.SaveChanges();
             }
 
-            using (var context = new CachorroContext(options))
+            using (var context = new CachorroDbContext(options))
             {
                 var controller = new TutoresController(context);
 
@@ -216,12 +216,12 @@ namespace THEJOB.Cachorro.Api.Tests
             // Arrange
             var tutor = new Domain.Tutor { Nome = "Eu cuido da silva" };
 
-            var options = new DbContextOptionsBuilder<CachorroContext>()
+            var options = new DbContextOptionsBuilder<CachorroDbContext>()
                .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
                .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
                .Options;
 
-            using (var context = new CachorroContext(options))
+            using (var context = new CachorroDbContext(options))
             {
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
@@ -230,7 +230,7 @@ namespace THEJOB.Cachorro.Api.Tests
                 context.SaveChanges();
             }
 
-            using (var context = new CachorroContext(options))
+            using (var context = new CachorroDbContext(options))
             {
                 var controller = new TutoresController(context);
 
@@ -250,12 +250,12 @@ namespace THEJOB.Cachorro.Api.Tests
             var TutorId = 2;
             var tutor = new Domain.Tutor { Id = TutorId, Nome = "Eu cuido da silva" };
 
-            var options = new DbContextOptionsBuilder<CachorroContext>()
+            var options = new DbContextOptionsBuilder<CachorroDbContext>()
                 .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
                 .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
                 .Options;
 
-            using (var context = new CachorroContext(options))
+            using (var context = new CachorroDbContext(options))
             {
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
@@ -264,7 +264,7 @@ namespace THEJOB.Cachorro.Api.Tests
                 context.SaveChanges();
             }
 
-            using (var context = new CachorroContext(options))
+            using (var context = new CachorroDbContext(options))
             {
                 var controller = new TutoresController(context);
 
@@ -284,12 +284,12 @@ namespace THEJOB.Cachorro.Api.Tests
             // Arrange
             var tutor = new Domain.Tutor { Nome = "Eu cuido da silva" };
 
-            var options = new DbContextOptionsBuilder<CachorroContext>()
+            var options = new DbContextOptionsBuilder<CachorroDbContext>()
                 .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
                 .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
                 .Options;
 
-            using (var context = new CachorroContext(options))
+            using (var context = new CachorroDbContext(options))
             {
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
@@ -298,7 +298,7 @@ namespace THEJOB.Cachorro.Api.Tests
                 context.SaveChanges();
             }
 
-            using (var context = new CachorroContext(options))
+            using (var context = new CachorroDbContext(options))
             {
                 var controller = new TutoresController(context);
 
@@ -319,12 +319,12 @@ namespace THEJOB.Cachorro.Api.Tests
             var cachorroId = 1;
             var tutor = new Domain.Tutor { Id = cachorroId, Nome = "Eu cuido da silva" };
 
-            var options = new DbContextOptionsBuilder<CachorroContext>()
+            var options = new DbContextOptionsBuilder<CachorroDbContext>()
                 .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
                 .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
                 .Options;
 
-            using (var context = new CachorroContext(options))
+            using (var context = new CachorroDbContext(options))
             {
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
@@ -333,7 +333,7 @@ namespace THEJOB.Cachorro.Api.Tests
                 context.SaveChanges();
             }
 
-            using (var context = new CachorroContext(options))
+            using (var context = new CachorroDbContext(options))
             {
                 var controller = new TutoresController(context);
 
