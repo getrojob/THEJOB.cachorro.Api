@@ -7,21 +7,25 @@ namespace THEJOB.Cachorro.Api.Extensions.Telemetria
     [ExcludeFromCodeCoverage]
     public static class AppInsightsExtensions
     {
-        public static void AddAppInsights(
+        public static void AddTelemetriaExtension(
             this IServiceCollection services,
-            IConfiguration configuration)
+            ConfigurationManager configuration)
         {
-            services.AddApplicationInsightsTelemetry(configuration.GetSection("ConnectionString:ApplicationInsights").Value)
+            services
+                .AddApplicationInsightsTelemetry(options =>
+                {
+                    options.ConnectionString = configuration.GetSection("ConnectionsString:ApplicationInsights").Value;
+                })
                 .ConfigureTelemetryModule<QuickPulseTelemetryModule>((module, o) =>
                 {
                     module.AuthenticationApiKey = configuration.GetSection("ApplicationInsights:ApiKey").Value;
                 });
 
-            services.ConfigureTelemetryModule<DependencyTrackingTelemetryModule>((module, o) =>
-            {
-                module.EnableSqlCommandTextInstrumentation = true;
-            });
-
+            services
+                .ConfigureTelemetryModule<DependencyTrackingTelemetryModule>((module, o) =>
+                {
+                    module.EnableSqlCommandTextInstrumentation = true;
+                });
         }
     }
 }

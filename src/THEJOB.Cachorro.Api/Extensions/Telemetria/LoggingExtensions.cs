@@ -5,16 +5,19 @@ namespace THEJOB.Cachorro.Api.Extensions.Telemetria
     [ExcludeFromCodeCoverage]
     public static class LoggingExtensions
     {
-        public static void AddLogExtensions(
+        public static void AddLogExtension(
             this ILoggingBuilder logging,
-            IConfiguration configuration)
+            ConfigurationManager configuration)
         {
             logging.ClearProviders();
             logging.AddConsole();
-            logging.AddApplicationInsights(configureTelemetryConfiguration: (config) =>
-            {
-                config.ConnectionString = configuration.GetSection("ConnectionString:ApplicationInsights").Value;
-            }, configureApplicationInsightsLoggerOptions: (options) => { });
+
+            logging.AddApplicationInsights(
+               configureTelemetryConfiguration: (config) =>
+               {
+                   config.ConnectionString = configuration.GetSection("ConnectionStrings:ApplicationInsights").Value;
+               },
+               configureApplicationInsightsLoggerOptions: (options) => { });
         }
     }
 }

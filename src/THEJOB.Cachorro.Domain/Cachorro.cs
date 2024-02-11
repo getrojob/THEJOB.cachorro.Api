@@ -6,9 +6,12 @@ namespace THEJOB.Cachorro.Domain
     public class Cachorro : BaseEntity<Guid>
     {
         public DateTime Nascimento { get; init; }
+
         public bool Adotado { get; set; }
-        public Pelagems Pelagem { get; set; }
-        public float Peso { get; set; }
+
+        public PELAGEM Pelagem { get; init; }
+
+        public float Peso { get; init; }
 
         [Flags]
         public enum Vacinas
@@ -33,7 +36,7 @@ namespace THEJOB.Cachorro.Domain
         }
 
         [Flags]
-        public enum Pelagems
+        public enum PELAGEM
         {
             None = 0,
             Curto = 1,

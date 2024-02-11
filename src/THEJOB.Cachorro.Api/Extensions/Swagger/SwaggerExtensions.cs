@@ -1,50 +1,55 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
+﻿using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Diagnostics.CodeAnalysis;
 
 namespace THEJOB.Cachorro.Api.Extensions.Swagger
 {
     [ExcludeFromCodeCoverage]
-    public static class SwaggerExtensions
+    public static class SwaggerExtension
     {
-        public static void AddSwagger(this IServiceCollection services)
+        public static void AddSwaggerExtension(this IServiceCollection services)
         {
-            services.AddApiVersioning(opt =>
-            {
-                opt.DefaultApiVersion = new ApiVersion(1, 0);
-                opt.AssumeDefaultVersionWhenUnspecified = true;
-                opt.ReportApiVersions = true;
-            });
+            services.AddApiVersioning(
+                    options =>
+                    {
+                        options.ReportApiVersions = true;
+                    })
+                .AddMvc()
+                .AddApiExplorer(
+                    options =>
+                    {
+                        options.GroupNameFormat = "'v'VVV";
+                        options.SubstituteApiVersionInUrl = true;
+                    });
 
-            services.AddVersionedApiExplorer(setup =>
-            {
-                setup.GroupNameFormat = "'v'VVV";
-                setup.SubstituteApiVersionInUrl = true;
-            });
-
-            services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen();
-
-            services.ConfigureOptions<ConfigureSwaggerOptions>();
+            services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
+            services.AddSwaggerGen(
+                options =>
+                {
+                    options.EnableAnnotations();
+                    options.CustomOperationIds(e => $"{e.ActionDescriptor.RouteValues["action"]}-{e.ActionDescriptor.RouteValues["controller"]}-{e.HttpMethod}".ToLower());
+                    options.OperationFilter<SwaggerDefaultValues>();
+                    var fileName = typeof(Program).Assembly.GetName().Name + ".xml";
+                    var filePath = Path.Combine(AppContext.BaseDirectory, fileName);
+                    options.IncludeXmlComments(filePath);
+                });
         }
 
-        public static void UseSwaggerTHEJOB(this WebApplication app)
+        public static void UseSwaggerExtension(this WebApplication app)
         {
-            var apiVersionDescriptionProvider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
-
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI(options =>
+            app.UseSwagger();
+            app.UseSwaggerUI(
+                options =>
                 {
+                    var descriptions = app.DescribeApiVersions();
                     options.RoutePrefix = string.Empty;
-                    foreach (var description in apiVersionDescriptionProvider.ApiVersionDescriptions)
+                    foreach (var description in descriptions)
                     {
-                        options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json",
-                            description.GroupName.ToUpperInvariant());
+                        var url = $"/swagger/{description.GroupName}/swagger.json";
+                        var name = description.GroupName.ToUpperInvariant();
+                        options.SwaggerEndpoint(url, name);
                     }
                 });
-            }
         }
     }
 }
