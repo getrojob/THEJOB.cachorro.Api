@@ -3,6 +3,8 @@ using System.Text.Json.Serialization;
 using THEJOB.Cachorro.Api.Extensions.Database;
 using THEJOB.Cachorro.Api.Extensions.Swagger;
 using THEJOB.Cachorro.Api.Extensions.Telemetria;
+using Microsoft.Extensions.Azure;
+using Azure.Identity;
 
 namespace THEJOB.Cachorro.Api
 {
@@ -20,6 +22,19 @@ namespace THEJOB.Cachorro.Api
                 });
 
             builder.Services.AddEndpointsApiExplorer();
+
+            builder.Services.AddRouting(opt =>
+            {
+                opt.LowercaseUrls = true;
+                opt.LowercaseQueryStrings = true;
+            });
+
+            builder.Services.AddAzureClients(clientBuilder =>
+            {
+                clientBuilder.AddSecretClient(
+                    builder.Configuration.GetSection("KeyVault"));
+                clientBuilder.UseCredential(new DefaultAzureCredential());
+            });
 
             //Extensions
             builder.Logging.AddLogExtension(builder.Configuration);
