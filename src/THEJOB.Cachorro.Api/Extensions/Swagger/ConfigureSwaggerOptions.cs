@@ -67,7 +67,6 @@ namespace THEJOB.Cachorro.Api.Extensions.Swagger
                     Email = "getrojob@gmail.com",
                     Name = "Getulio Silva"
                 },
-
             };
 
             IsDeprecated(description, text);
