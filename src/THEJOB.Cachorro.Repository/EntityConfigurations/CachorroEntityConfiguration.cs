@@ -63,7 +63,7 @@ namespace THEJOB.Cachorro.Repository.EntityConfigurations
                 Id = Guid.NewGuid(),
                 Nome = "Rex",
                 Peso = 9.3F,
-                Nascimento = new DateTime(2023, 1, 4),
+                Nascimento = new DateTime(2023, 1, 4, 0, 0, 0, DateTimeKind.Utc),
                 Cadastro = System.DateTime.Now,
                 Atualizacao = System.DateTime.Now,
                 Adotado = true,

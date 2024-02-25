@@ -18,8 +18,6 @@ namespace THEJOB.Cachorro.Repository
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.ApplyConfiguration<Cachorro.Domain.Cachorro>(new CachorroEntityConfiguration());
-            //modelBuilder.ApplyConfiguration<Tutor>(new TutorEntityConfiguration());
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
