@@ -1,5 +1,6 @@
 ﻿using Asp.Versioning;
 using Asp.Versioning.ApiExplorer;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -12,6 +13,9 @@ namespace THEJOB.Cachorro.Api.Extensions.Swagger
     [ExcludeFromCodeCoverage]
     public class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>
     {
+        public const string AuthenticationScheme = "JWT";
+        public const string HeaderName = "Authorization";
+
         private readonly IApiVersionDescriptionProvider provider;
 
         public ConfigureSwaggerOptions(IApiVersionDescriptionProvider provider) => this.provider = provider;
@@ -22,30 +26,60 @@ namespace THEJOB.Cachorro.Api.Extensions.Swagger
             {
                 options.SwaggerDoc(description.GroupName, CreateInfoForApiVersion(description));
             }
+
+            options.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme
+            {
+                Name = ConfigureSwaggerOptions.HeaderName,
+                In = ParameterLocation.Header,
+                Description = "Informe o token JWT com Bearer no formato: Bearer {token}",
+                Type = SecuritySchemeType.ApiKey,
+                BearerFormat = ConfigureSwaggerOptions.AuthenticationScheme,
+                Scheme = JwtBearerDefaults.AuthenticationScheme
+            });
+
+            options.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = JwtBearerDefaults.AuthenticationScheme
+                        }
+                    },
+                    new string[]{}
+                }
+            });
         }
 
         private static OpenApiInfo CreateInfoForApiVersion(ApiVersionDescription description)
         {
-            var text = new StringBuilder("API de Cachorro  com OpenAPI, Swashbuckle, e API versioning.");
+            var text = new StringBuilder("API de Cachorro com OpenAPI, Swashbuckle, e API versioning.");
 
             var info = new OpenApiInfo()
             {
                 Title = "Cachorro WebAPI .NET 7",
                 Version = description.ApiVersion.ToString(),
-                Description = $"WebApi v{Assembly.GetExecutingAssembly().GetName().Version}",
+                Description = $"WebApi THEJOB v{Assembly.GetExecutingAssembly().GetName().Version}",
                 Contact = new OpenApiContact()
                 {
                     Email = "getrojob@gmail.com",
                     Name = "Getulio Silva"
                 },
-                License = new OpenApiLicense() { Name = "MIT", Url = new Uri("https://opensource.org/licenses/MIT") }
+
             };
 
-            if (description.IsDeprecated)
-            {
-                text.Append(" Essa versão de API esta marcada como depreciada.");
-            }
+            IsDeprecated(description, text);
+            IsActive(description, text);
 
+            info.Description = text.ToString();
+
+            return info;
+        }
+
+        private static void IsActive(ApiVersionDescription description, StringBuilder text)
+        {
             if (description.SunsetPolicy is SunsetPolicy policy)
             {
                 if (policy.Date is DateTimeOffset when)
@@ -65,22 +99,32 @@ namespace THEJOB.Cachorro.Api.Extensions.Swagger
 
                         if (link.Type == "text/html")
                         {
-                            text.AppendLine();
-
-                            if (link.Title.HasValue)
-                            {
-                                text.Append(link.Title.Value).Append(": ");
-                            }
-
-                            text.Append(link.LinkTarget.OriginalString);
+                            AppendLink(text, link);
                         }
                     }
                 }
             }
-
-            info.Description = text.ToString();
-
-            return info;
         }
+
+        private static void AppendLink(StringBuilder text, LinkHeaderValue link)
+        {
+            text.AppendLine();
+
+            if (link.Title.HasValue)
+            {
+                text.Append(link.Title.Value).Append(": ");
+            }
+
+            text.Append(link.LinkTarget.OriginalString);
+        }
+
+        private static void IsDeprecated(ApiVersionDescription description, StringBuilder text)
+        {
+            if (description.IsDeprecated)
+            {
+                text.Append(" Essa versão de API esta marcada como depreciada.");
+            }
+        }
+
     }
 }
