@@ -10,7 +10,7 @@ namespace THEJOB.Cachorro.Api.Controllers.v1
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
-   // [Authorize]
+    [Authorize]
     public class CachorrosController : ControllerBase
     {
         public readonly CachorroDbContext _context;

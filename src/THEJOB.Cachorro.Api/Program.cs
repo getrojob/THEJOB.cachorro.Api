@@ -7,6 +7,7 @@ using THEJOB.Cachorro.Api.Extensions.Telemetria;
 using Microsoft.Extensions.Azure;
 using Azure.Identity;
 using THEJOB.Cachorro.Api.Extensions.KeyVault;
+using THEJOB.Cachorro.Api.Extensions.Auth;
 
 namespace THEJOB.Cachorro.Api
 {
@@ -17,14 +18,16 @@ namespace THEJOB.Cachorro.Api
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddAuthExtension(builder.Configuration);
 
             builder.Services.AddControllers()
-                .AddJsonOptions(opt =>
-                {
-                    opt.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-                });
+                            .AddJsonOptions(opt =>
+                            {
+                                opt.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                                opt.JsonSerializerOptions.WriteIndented = true;
+                                opt.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
 
-            builder.Services.AddEndpointsApiExplorer();
+                            });
 
             builder.Services.AddRouting(opt =>
             {
@@ -32,12 +35,7 @@ namespace THEJOB.Cachorro.Api
                 opt.LowercaseQueryStrings = true;
             });
 
-            builder.Services.AddAzureClients(clientBuilder =>
-            {
-                clientBuilder.AddSecretClient(
-                    builder.Configuration.GetSection("KeyVault"));
-                clientBuilder.UseCredential(new DefaultAzureCredential());
-            });
+            builder.Services.AddEndpointsApiExplorer();
 
             //Extensions
             builder.Services.AddKeyVaultExtension(builder.Configuration);
@@ -54,6 +52,7 @@ namespace THEJOB.Cachorro.Api
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllers();
